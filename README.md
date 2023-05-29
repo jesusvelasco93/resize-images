@@ -2,10 +2,11 @@
 Frameworks selected
 --
 - Hapi last version (Last framework server of Node used)
+- Joi as validator of the payloads
 -  as BBDD
 - 
 - Azure services (More experience with Microsoft technologies)
-- OS: Windows
+- OS: Windows (Normal OS used in the projects)
 
 --
 Prerequisites
@@ -31,3 +32,5 @@ How to use the APP
 --
 Other decisions taked
 --
+- No auth used for be a example project
+- No used inversify and decorator to improve the readability of the code for be a small project

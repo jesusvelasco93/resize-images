@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": "js",
+  "ignore": ["src/**/*.ts"],
+  "exec": "node --inspect ./src/Index.js"
+}

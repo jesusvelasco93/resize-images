@@ -2,13 +2,24 @@
   "name": "server",
   "version": "1.0.0",
   "description": "server of resize images",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "build": "tsc -w",
+    "start": "nodemon --config nodemon-js.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jesus Velasco",
   "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^21.3.2"
+    "@hapi/hapi": "^21.3.2",
+    "@hapi/inert": "^7.1.0",
+    "joi": "^17.9.2",
+    "nodemon": "^2.0.22",
+    "path": "^0.12.7",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/hapi__joi": "^17.1.9",
+    "@types/node": "^20.2.5"
   }
 }
