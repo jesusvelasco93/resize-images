@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "cafe6dd6-8a46-456d-bc8d-ad6b1e2591d5",
+		"name": "Resize Images API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Static",
+			"item": [
+				{
+					"name": "Get image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/static/:originalname/:size/:filename",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"static",
+								":originalname",
+								":size",
+								":filename"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "originalname",
+									"value": "zara"
+								},
+								{
+									"key": "size",
+									"value": "original"
+								},
+								{
+									"key": "filename",
+									"value": "00236a2ae558018ed13b5222ef1bd977.jpg"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Api",
+			"item": [
+				{
+					"name": "Get task by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/task/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"task",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "88f3c9b75bcf7677933f436f76a6cf87"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/jvelasco/Desktop/resize-images/test-images/zara.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/task",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

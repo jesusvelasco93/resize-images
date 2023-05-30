@@ -1,18 +1,29 @@
 import Path from "Path";
-import Inert from "@hapi/inert";
 import Hapi from "@hapi/hapi";
-import { AppConfig } from "./appConfig";
+import Inert from "@hapi/inert";
+import Vision from "@hapi/vision";
+import HapiSwagger from "hapi-swagger";
+import { AppConfig } from "./core/appConfig";
 
 // Import from controllers
 import { TaskController } from "./controllers/TaskController";
 import { StaticFilesController } from "./controllers/StaticFilesController";
 
-// Plugins
-export const plugins = [{ plugin: Inert }];
-// Additional headers for cors
-const additionalHeaders = [];
 // Get app config
 const appConfig = new AppConfig();
+// Additional headers for cors
+const additionalHeaders = [];
+const allowedDomains = ["*"]; // Use app config if you need different for each environment
+// Swagger config
+const swaggerConfig = {
+  info: {
+    title: "Resize Images API Documentation",
+    version: "1.0.1",
+  },
+};
+
+// Plugins
+export const plugins = [{ plugin: Inert }, { plugin: Vision }, { plugin: HapiSwagger, options: swaggerConfig }];
 
 // Create server
 const server = new Hapi.Server({
@@ -23,10 +34,10 @@ const server = new Hapi.Server({
   },
   routes: {
     files: {
-      relativeTo: Path.join(__dirname, "../output/"),
+      relativeTo: Path.join(__dirname, appConfig.server.staticFiles),
     },
     cors: {
-      origin: ["*"],
+      origin: allowedDomains,
       additionalHeaders,
       credentials: true,
     },

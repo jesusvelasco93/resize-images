@@ -1,0 +1,3 @@
+interface IPayloadPostTask {
+  file: any;
+}
