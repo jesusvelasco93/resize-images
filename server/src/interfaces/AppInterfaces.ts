@@ -10,3 +10,6 @@ export interface IDataBaseConfig {
   cluster: string;
   connectionString: string;
 }
+export interface IAzureConfig {
+  url: string;
+}

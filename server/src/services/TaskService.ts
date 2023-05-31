@@ -7,6 +7,7 @@ import Hash from "../utils/hash";
 import ImageUtils, { IFile } from "../utils/image-utils";
 
 import { TaskModel, ImageModel } from "../models";
+import { IPayloadPostTask } from "../interfaces/PayloadInterfaces";
 
 export class TaskService {
   public static async getTaskById(request: Request, response: ResponseToolkit) {

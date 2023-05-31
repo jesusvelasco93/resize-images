@@ -13,6 +13,9 @@ export class StaticFilesController {
       .regex(/^[a-f0-9]{32}\..{3,4}$/)
       .required(),
   };
+  private static payloadValidation: joi.SchemaMap = {
+    file: joi.any(),
+  };
   /* Routes */
   public static routes: ServerRoute<ReqRefDefaults>[] = [
     {

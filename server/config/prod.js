@@ -12,4 +12,7 @@ module.exports = {
     cluster: process.env.DB_CLUSTER,
     connectionString: "mongodb+srv://{{user}}:{{password}}}@{{cluster}}/?retryWrites=true&w=majority",
   },
+  azure: {
+    url: process.env.AZURE_URL,
+  },
 };

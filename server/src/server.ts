@@ -8,6 +8,7 @@ import { AppConfig } from "./core/appConfig";
 // Import from controllers
 import { TaskController } from "./controllers/TaskController";
 import { StaticFilesController } from "./controllers/StaticFilesController";
+import { ImageController } from "./controllers/ImageController";
 
 // Get app config
 const appConfig = new AppConfig();
@@ -60,6 +61,6 @@ const server = new Hapi.Server({
   },
 });
 
-export const routes = [...TaskController.routes, ...StaticFilesController.routes];
+export const routes = [...TaskController.routes, ...ImageController.routes, ...StaticFilesController.routes];
 
 export default server;

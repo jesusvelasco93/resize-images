@@ -1,5 +1,5 @@
 import config from "config";
-import { IDataBaseConfig, IServerConfig } from "../interfaces/AppInterfaces";
+import { IDataBaseConfig, IServerConfig, IAzureConfig } from "../interfaces/AppInterfaces";
 
 export class AppConfig {
   public get server(): IServerConfig {
@@ -7,5 +7,8 @@ export class AppConfig {
   }
   public get dbConfig(): IDataBaseConfig {
     return config.get("dbConfig");
+  }
+  public get azure(): IAzureConfig {
+    return config.get("azure");
   }
 }

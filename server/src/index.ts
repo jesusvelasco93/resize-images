@@ -2,6 +2,8 @@ import server, { plugins, routes } from "./server";
 import ErrorHandler from "./core/errorHandler";
 import RequestHandler from "./core/requestHandler";
 import DataBase from "./core/database";
+import * as schedule from "node-schedule";
+import { ScheduleService } from "./services/ScheduleService";
 
 (async function start() {
   await DataBase.connect();
@@ -16,6 +18,12 @@ import DataBase from "./core/database";
   await server.start();
   console.log("Server running on %s", server.info.uri);
 })();
+
+/* Autoschedule */
+schedule.scheduleJob("*/5 * * * *", async () => {
+  console.log("OK");
+  // void ScheduleService.postTaskImage();
+});
 
 /* Handle crash */
 process.on("unhandledRejection", (err) => {
