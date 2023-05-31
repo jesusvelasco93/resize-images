@@ -21,8 +21,7 @@ import { ScheduleService } from "./services/ScheduleService";
 
 /* Autoschedule */
 schedule.scheduleJob("*/5 * * * *", async () => {
-  console.log("OK");
-  // void ScheduleService.postTaskImage();
+  void ScheduleService.postTaskImage();
 });
 
 /* Handle crash */
