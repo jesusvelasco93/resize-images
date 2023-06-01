@@ -55,32 +55,103 @@
 			"name": "Api",
 			"item": [
 				{
-					"name": "Get task by Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/task/:id",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"task",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "88f3c9b75bcf7677933f436f76a6cf87"
+					"name": "original",
+					"item": [
+						{
+							"name": "Get task by Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/task/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"task",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "88f3c9b75bcf7677933f436f76a6cf87"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "Post task",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/jvelasco/Desktop/resize-images/test-images/zara.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/task",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"task"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Post task",
+					"name": "test",
+					"item": [
+						{
+							"name": "Post Image",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/jvelasco/Desktop/resize-images/test-images/zara.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/images",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"images"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Azure",
+			"item": [
+				{
+					"name": "Post redimension",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -91,17 +162,29 @@
 									"key": "file",
 									"type": "file",
 									"src": "/C:/Users/jvelasco/Desktop/resize-images/test-images/zara.jpg"
+								},
+								{
+									"key": "algo",
+									"value": "other",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "{{host}}/api/task",
+							"raw": "{{hostAzure}}/api/Redimision-Image?resolutions=800,1024",
 							"host": [
-								"{{host}}"
+								"{{hostAzure}}"
 							],
 							"path": [
 								"api",
-								"task"
+								"Redimision-Image"
+							],
+							"query": [
+								{
+									"key": "resolutions",
+									"value": "800,1024"
+								}
 							]
 						}
 					},
