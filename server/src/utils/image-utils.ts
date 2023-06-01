@@ -47,17 +47,20 @@ const ImageUtils = {
     return resolution;
   },
   generatePath: (image: IImage, md5: string, width: string = defaultPath) => {
-    const path = `/${image.fileName}/${width}`;
-    const pathServer = `./${dirOut}/${path}`;
+    const pathRelative = `${image.fileName}/${width}`;
+    const pathServer = `${dirOut}/${pathRelative}`;
     return {
-      path: path,
-      fullPath: `${pathServer}/${md5}.${image.extension}`,
-      folderPath: pathServer,
+      path: `${pathServer}/${md5}.${image.extension}`,
+      fullPath: `.${pathServer}/${md5}.${image.extension}`,
+      folderPath: `.${pathServer}`,
     };
   },
   getFileName: (path: string = "") => {
     const partials = path.split("/");
     return partials[partials.length - 1];
+  },
+  generateFileNameToPost: (path: string = "", width: string = "", id: string = "") => {
+    return path.replace(`${dirOut}/`, "").replace(`/${width}/${id}`, "");
   },
 };
 

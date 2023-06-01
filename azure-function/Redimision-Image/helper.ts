@@ -16,14 +16,14 @@ function http(): AxiosInstance {
 }
 
 // Save the images to the Server
-export const saveImages = async (context: Context, images: IResizeResult[]) => {
+export const saveImages = async (context: Context, id: string, images: IResizeResult[]) => {
   const formData = new FormData();
   for (const image of images) {
     const blobFromBuffer = new Blob([image.image]);
     formData.append("files", blobFromBuffer, image.filename);
   }
   http()
-    .post("/api/images", formData)
+    .post(`/api/images?id=${id}`, formData)
     .catch((err) => {
       context.log("Error posting new images to the server", err);
     });

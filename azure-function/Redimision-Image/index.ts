@@ -13,6 +13,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   let status = 200;
   let message = "Success";
   // Get from query params
+  const _id = req.query.id || "";
   const _resolutions = req.query.resolutions || "";
   const resolutions = _resolutions ? _resolutions.split(",") : [];
 
@@ -38,7 +39,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     Promise.all(resizeImagesPromises)
       .then((results) => {
         const imagesToSave = results.filter((result) => result?.error === false);
-        if (imagesToSave?.length > 0) void saveImages(context, imagesToSave);
+        if (imagesToSave?.length > 0) void saveImages(context, _id, imagesToSave);
       })
       .catch((err) => {
         context.log("Error processing the requests: ", err);

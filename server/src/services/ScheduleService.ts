@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import Logger from "../core/logger";
-import { AZURE_FUNCTION, StatusTask, dirOut } from "../utils/constants";
+import { AZURE_FUNCTION, FILE_PARAM, StatusTask } from "../utils/constants";
 
 import { http } from "../utils/http";
 import ImageUtils from "../utils/image-utils";
@@ -13,22 +13,24 @@ export class ScheduleService {
     Logger.debug("TaskService", `Launch automatic post task image..`);
     // Find tasks in pending
     const tasks = (await TaskModel.find({ statusId: StatusTask.Pending })) || [];
+    if (!tasks || tasks.length === 0) Logger.debug("TaskService", `No tasks images for automatic..`);
     // Foreach one
     for await (const task of tasks) {
       // Update the status to processing
       task.statusId = StatusTask.Procesing;
       await task.save();
       // Get the image
-      const image: Buffer = fs.readFileSync(`./${dirOut}/${task.path}`);
+      const image: Buffer = fs.readFileSync(`.${task.path}`);
       if (image) {
-        const filename = ImageUtils.getFileName(task.path); // Generate from path
+        const filename = ImageUtils.generateFileNameToPost(task.path, "original", task.id); // Generate from path
         // Generate formData
         const formData = new FormData();
         const blobFromBuffer = new Blob([image]);
-        formData.append("files", blobFromBuffer, filename);
+        formData.append(FILE_PARAM, blobFromBuffer, filename);
         // Send the request
+        // const headers = { "Content-Type": "multipart/form-data" };
         const result = await http()
-          .post(`/api/${AZURE_FUNCTION}`, formData)
+          .post(`/api/${AZURE_FUNCTION}?resolutions=800,1024&id=${task.id}`, formData)
           .catch(async (err) => {
             // Update the status to processing
             task.statusId = StatusTask.Error;
@@ -37,13 +39,13 @@ export class ScheduleService {
           });
         // Update the status
         if (result && result.status === 200) {
-          task.statusId = StatusTask.Procesing;
-          await task.save();
+          Logger.debug("TaskService", `Request receive successfully`);
         }
       } else {
         Logger.error("TaskService", `Image file not found ${task.id}`);
       }
     }
     Logger.debug("TaskService", `Finish automatic post task image`);
+    return true;
   }
 }

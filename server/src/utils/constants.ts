@@ -4,7 +4,8 @@ export enum StatusTask {
   "Error" = 3,
   "End" = 4,
 }
-export const AZURE_FUNCTION = "";
+export const AZURE_FUNCTION = "Redimision-Image";
+export const FILE_PARAM = "file";
 
 export const dirOut = "/output";
 export const defaultPath = "original";

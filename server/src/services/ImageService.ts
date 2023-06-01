@@ -31,13 +31,12 @@ export class ImageService {
       Logger.debug("ImageService", `ImageModel ${md5} saved successfully`);
     }
     // Update the status of the task in database and return the id
-    const task = await TaskModel.findOne({ id: request.params.id });
+    const task = await TaskModel.findOne({ id: request.query.id });
     if (task) {
       task.statusId = StatusTask.End;
       await task.save();
+      Logger.debug("ImageService", `TaskModel ${task.id} updated successfully`);
     }
-    task.status = StatusTask[task.statusId];
-    Logger.debug("ImageService", `TaskModel ${task.id} updated successfully`);
     return "Done";
   }
 }

@@ -8,11 +8,10 @@ module.exports = {
   },
   dbConfig: {
     user: "jesus-velasco",
-    password: "",
     cluster: "resize-images.mlpu08t.mongodb.net",
     connectionString: "mongodb+srv://{{user}}:{{password}}@{{cluster}}/?retryWrites=true&w=majority",
   },
   azure: {
-    url: "http://localhost:7071",
+    url: "http://127.0.0.1:7071",
   },
 };
