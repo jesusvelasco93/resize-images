@@ -93,7 +93,7 @@
 										{
 											"key": "file",
 											"type": "file",
-											"src": "/C:/Users/jvelasco/Desktop/resize-images/test-images/zara.jpg"
+											"src": "/C:/Users/jvelasco/Desktop/resize-images/test-images/massimo.png"
 										}
 									]
 								},
@@ -142,6 +142,34 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Launch cron",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/jvelasco/Desktop/resize-images/test-images/zara.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/images",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"images"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -152,6 +180,9 @@
 			"item": [
 				{
 					"name": "Post redimension",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -161,7 +192,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/jvelasco/Desktop/resize-images/test-images/zara.jpg"
+									"src": []
 								},
 								{
 									"key": "algo",
@@ -172,7 +203,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{hostAzure}}/api/Redimision-Image?resolutions=800,1024",
+							"raw": "{{hostAzure}}/api/Redimision-Image?resolutions=800,1024&id=55c52bbe2b535450229c1552ad5cff39",
 							"host": [
 								"{{hostAzure}}"
 							],
@@ -184,6 +215,10 @@
 								{
 									"key": "resolutions",
 									"value": "800,1024"
+								},
+								{
+									"key": "id",
+									"value": "55c52bbe2b535450229c1552ad5cff39"
 								}
 							]
 						}

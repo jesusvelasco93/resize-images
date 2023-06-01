@@ -8,6 +8,7 @@ module.exports = {
   },
   dbConfig: {
     user: "jesus-velasco",
+    password: "", // fill it
     cluster: "resize-images.mlpu08t.mongodb.net",
     connectionString: "mongodb+srv://{{user}}:{{password}}@{{cluster}}/?retryWrites=true&w=majority",
   },
